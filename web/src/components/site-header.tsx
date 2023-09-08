@@ -1,11 +1,10 @@
 import Link from "next/link";
 
-import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { Icons } from "@/components/icons";
 import { MainNav } from "@/components/main-nav";
 import { MobileNav } from "@/components/mobile-nav";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Dialog,
@@ -16,8 +15,10 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import CameraCapture from "./camera-capture";
+import { useState } from "react";
 
 export function SiteHeader() {
+  const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-blue-600/95 backdrop-blur">
       <div className="container flex h-14 items-center">
@@ -30,7 +31,7 @@ export function SiteHeader() {
               className="h-6"
             />
           </Link>
-          <Dialog>
+          <Dialog open={open} onOpenChange={setOpen}>
             <div className="flex w-full flex-1 items-center">
               <div className="relative flex w-full max-w-xl items-center">
                 <Input
@@ -69,7 +70,7 @@ export function SiteHeader() {
                 </div>
               </div>
             </div>
-            <DialogContent>
+            <DialogContent className={cn("max-w-2xl")}>
               <DialogHeader>
                 <DialogTitle>Search visually</DialogTitle>
                 <DialogDescription>

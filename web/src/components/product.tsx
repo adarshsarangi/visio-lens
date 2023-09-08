@@ -1,14 +1,14 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
 import React from "react";
 
 interface ProductProps {
-  id: number;
+  id: string;
   name: string;
   href: string;
   imageSrc: string;
-  imageAlt: string;
   actualPrice: number;
   discountedPrice: number;
   discountPercent: string;
@@ -21,7 +21,7 @@ export default function Product(product: ProductProps) {
       <div className="aspect-h-1 aspect-w-1 lg:aspect-none w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-56">
         <img
           src={product.imageSrc}
-          alt={product.imageAlt}
+          alt={product.name}
           className="h-full w-full object-cover object-center lg:h-full lg:w-full"
         />
       </div>

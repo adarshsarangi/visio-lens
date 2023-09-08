@@ -5,18 +5,18 @@ import MainLayout from "@/layouts/main";
 import { useRouter } from "next/router";
 
 const dots = [
-  {
-    width: 245,
-    height: 260,
-    x: 295,
-    y: 280,
-  },
-  {
-    width: 187,
-    height: 393,
-    x: 279,
-    y: 587,
-  },
+  // {
+  //   width: 245,
+  //   height: 260,
+  //   x: 295,
+  //   y: 280,
+  // },
+  // {
+  //   width: 187,
+  //   height: 393,
+  //   x: 279,
+  //   y: 587,
+  // },
 ];
 
 const image = {
@@ -25,106 +25,6 @@ const image = {
   width: 564,
   height: 846,
 };
-
-const products = [
-  {
-    id: 1,
-    name: "Front of men's Basic Tee",
-    href: "#",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-    imageAlt: "Front of men's Basic Tee in black.",
-    actualPrice: 540,
-    discountedPrice: 400,
-    discountPercent: "20%",
-    brand: "Wrangler",
-  },
-  {
-    id: 2,
-    name: "Front of men's Basic Tee",
-    href: "#",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-    imageAlt: "Front of men's Basic Tee in black.",
-    actualPrice: 540,
-    discountedPrice: 400,
-    discountPercent: "20%",
-    brand: "Wrangler",
-  },
-  {
-    id: 3,
-    name: "Front of men's Basic Tee",
-    href: "#",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-    imageAlt: "Front of men's Basic Tee in black.",
-    actualPrice: 540,
-    discountedPrice: 400,
-    discountPercent: "20%",
-    brand: "Wrangler",
-  },
-  {
-    id: 4,
-    name: "Front of men's Basic Tee",
-    href: "#",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-    imageAlt: "Front of men's Basic Tee in black.",
-    actualPrice: 540,
-    discountedPrice: 400,
-    discountPercent: "20%",
-    brand: "Wrangler",
-  },
-  {
-    id: 5,
-    name: "Front of men's Basic Tee",
-    href: "#",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-    imageAlt: "Front of men's Basic Tee in black.",
-    actualPrice: 540,
-    discountedPrice: 400,
-    discountPercent: "20%",
-    brand: "Wrangler",
-  },
-  {
-    id: 6,
-    name: "Front of men's Basic Tee",
-    href: "#",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-    imageAlt: "Front of men's Basic Tee in black.",
-    actualPrice: 540,
-    discountedPrice: 400,
-    discountPercent: "20%",
-    brand: "Wrangler",
-  },
-  {
-    id: 7,
-    name: "Front of men's Basic Tee",
-    href: "#",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-    imageAlt: "Front of men's Basic Tee in black.",
-    actualPrice: 540,
-    discountedPrice: 400,
-    discountPercent: "20%",
-    brand: "Wrangler",
-  },
-  {
-    id: 8,
-    name: "Front of men's Basic Tee",
-    href: "#",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-    imageAlt: "Front of men's Basic Tee in black.",
-    actualPrice: 540,
-    discountedPrice: 400,
-    discountPercent: "20%",
-    brand: "Wrangler",
-  },
-  // More products...
-];
 
 export default function SearchPage() {
   const { query } = useRouter();
@@ -176,11 +76,11 @@ function SearchPageContent({ src, height, width }: SearchPageContentProps) {
               <h2 className="text-2xl font-bold tracking-tight text-gray-900">
                 Search results
               </h2>
-              <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+              {/* <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
                 {products.map((product) => (
                   <Product key={product.id} {...product} />
                 ))}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

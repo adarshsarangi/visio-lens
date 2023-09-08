@@ -34,10 +34,10 @@ const VisualSearch = ({ image, dots }: VisualSearchProps) => {
     dots.length > 0
       ? transformDot(dots[0]!)
       : {
-          width: image.width,
-          height: image.height,
-          x: 0,
-          y: 0,
+          width: image.width - 20,
+          height: image.height - 20,
+          x: 10,
+          y: 10,
         },
   );
 

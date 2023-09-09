@@ -1,14 +1,12 @@
-import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
-import Link from "next/link";
 
-import { api } from "@/utils/api";
-import InfiniteScroll from "react-infinite-scroll-component";
-import MainLayout from "@/layouts/main";
-import { siteConfig } from "@/config/site";
 import Product from "@/components/product";
 import { LoadingProducts } from "@/components/skeleton";
+import { siteConfig } from "@/config/site";
+import MainLayout from "@/layouts/main";
+import { api } from "@/utils/api";
 import type { Product as IProduct } from "@prisma/client";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 type InfiniteProductListProps = {
   isLoading: boolean;

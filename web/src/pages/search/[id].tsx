@@ -5,7 +5,6 @@ import MainLayout from "@/layouts/main";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { useState } from "react";
-import { LoadingProducts } from "@/components/skeleton";
 import { api } from "@/utils/api";
 
 const dots = [
@@ -22,13 +21,6 @@ const dots = [
   //   y: 587,
   // },
 ];
-
-const image = {
-  name: "Test",
-  src: "https://i.pinimg.com/564x/19/bc/de/19bcdea949b3046430f3dc659733f06d.jpg",
-  width: 564,
-  height: 846,
-};
 
 export default function SearchPage() {
   const { query } = useRouter();
@@ -56,29 +48,45 @@ interface SearchPageContentProps {
 }
 
 function SearchPageContent({ src, height, width }: SearchPageContentProps) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [products, setProducts] = useState([]);
+  const [ids, setIds] = useState([]);
+  const [isPredicting, setIsPredicting] = useState(true);
+  const { data: products, isLoading } = api.product.getAll.useQuery(
+    {
+      ids,
+    },
+    {
+      enabled: ids.length > 0,
+    },
+  );
 
-  // const { data: products, isLoading } = api.product.getAll.useQuery();
+  const getRelatedImages = async (url: string, params: any) => {
+    setIsPredicting(true);
 
-  const getRelatedImages = async (url: string) => {
-    setIsLoading(true);
     const blob = await (await fetch(url)).blob();
     const formData = new FormData();
-    formData.append("image", blob);
-    console.log(blob);
+    const file = new File([blob], "predict.jpg", {
+      type: "image/jpeg",
+    });
+    formData.append("image", file);
+    console.log(formData.getAll("image"));
+
     axios
-      .post("upload_file", formData, {
+      .post("http://localhost:8000/visual-search/", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
+        params: {
+          ...params,
+        },
       })
       .then((res) => {
-        console.log(res);
+        const productIds = res.data.map((item) => item[0].slice(0, -4));
+        console.log(productIds);
+        setIds(productIds);
         // setProducts
       })
       .finally(() => {
-        setIsLoading(false);
+        setIsPredicting(false);
       });
   };
 
@@ -107,11 +115,11 @@ function SearchPageContent({ src, height, width }: SearchPageContentProps) {
               <h2 className="text-2xl font-bold tracking-tight text-gray-900">
                 Search results
               </h2>
-              {isLoading ? (
-                "Loading..."
-              ) : (
+              {isPredicting && "Predicting..."}
+              {!isPredicting && isLoading && "Loading...."}
+              {!isPredicting && !isLoading && (
                 <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-                  {products.slice(0, 9).map((product) => (
+                  {products.map((product) => (
                     <Product
                       key={product.id}
                       actualPrice={product.actualPrice}

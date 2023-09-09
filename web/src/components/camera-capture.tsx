@@ -1,9 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useRef, ChangeEvent, useEffect } from "react";
-import { Icons } from "./icons";
-import { Button, buttonVariants } from "./ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { Button, buttonVariants } from "./ui/button";
 
 interface ImageData {
   src: string;
@@ -191,6 +190,7 @@ function CameraCapture() {
         {cameraStream != null && clicked && (
           <Link
             href={`/search/capture?${new URLSearchParams(
+              // @ts-ignore
               imageData,
             ).toString()}`}
             className={cn(

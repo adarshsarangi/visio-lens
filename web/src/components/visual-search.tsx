@@ -2,7 +2,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRef, useState } from "react";
 import { Rnd } from "react-rnd";
-import axios from "axios";
 
 interface Dot {
   width: number;
@@ -45,15 +44,21 @@ const VisualSearch = ({ image, dots, handleSearch }: VisualSearchProps) => {
   );
 
   const extractImage = () => {
-    const { width, height, x, y } = state;
-    const canvas = document.getElementById("croppedImage") as HTMLCanvasElement;
-    canvas.height = height;
-    canvas.width = width;
+    // const { width, height, x, y } = state;
+    // const canvas = document.getElementById("croppedImage") as HTMLCanvasElement;
+    // canvas.height = height;
+    // canvas.width = width;
 
-    const ctx = canvas.getContext("2d");
-    ctx.drawImage(imageRef.current, x, y, width, height, 0, 0, width, height);
-    const url = canvas.toDataURL("image/png");
-    handleSearch(url);
+    // const ctx = canvas.getContext("2d");
+    // ctx.drawImage(imageRef.current, x, y, width, height, 0, 0, width, height);
+    // const url = canvas.toDataURL("image/png");
+    // handleSearch(url);
+    handleSearch(image.src, {
+      left: Math.floor(state.x),
+      top: Math.floor(state.y),
+      right: Math.floor(state.x + state.width),
+      bottom: Math.floor(state.y + state.height),
+    });
   };
 
   return (

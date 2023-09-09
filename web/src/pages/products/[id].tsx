@@ -4,7 +4,6 @@ import MainLayout from "@/layouts/main";
 import { cn } from "@/lib/utils";
 import { api } from "@/utils/api";
 import { useRouter } from "next/router";
-import React from "react";
 
 export default function ProductPage() {
   const router = useRouter();

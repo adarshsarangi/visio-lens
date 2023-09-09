@@ -32,9 +32,24 @@ export const productRouter = createTRPCRouter({
       };
     }),
 
-  getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.product.findMany();
-  }),
+  getAll: publicProcedure
+    .input(
+      z.object({
+        ids: z.array(z.string()).optional(),
+      }),
+    )
+    .query(({ ctx, input }) => {
+      if (input.ids.length > 0) {
+        return ctx.prisma.product.findMany({
+          where: {
+            id: {
+              in: input.ids,
+            },
+          },
+        });
+      }
+      return ctx.prisma.product.findMany();
+    }),
 
   getOne: publicProcedure
     .input(

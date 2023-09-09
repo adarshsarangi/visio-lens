@@ -49,7 +49,7 @@ interface SearchPageContentProps {
 
 function SearchPageContent({ src, height, width }: SearchPageContentProps) {
   const [ids, setIds] = useState([]);
-  const [isPredicting, setIsPredicting] = useState(true);
+  const [isPredicting, setIsPredicting] = useState(false);
   const { data: products, isLoading } = api.product.getAll.useQuery(
     {
       ids,
@@ -71,7 +71,7 @@ function SearchPageContent({ src, height, width }: SearchPageContentProps) {
     console.log(formData.getAll("image"));
 
     axios
-      .post("http://localhost:8000/visual-search/", formData, {
+      .post(`${process.env.NEXT_PUBLIC_PREDICT_API}/visual-search/`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

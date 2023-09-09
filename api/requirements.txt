@@ -1,0 +1,7 @@
+torch
+pydantic
+numpy
+fastapi
+scikit-learn
+torchvision
+python-multipart

@@ -50,7 +50,7 @@ Run this followed commands:
 # Install dependencies (only the first time)
 npm install
 
-# Run the local server at localhost:8080
+# Run the local server at localhost:3000
 npm run dev
 
 # Build for production in the dist/ directory
@@ -65,6 +65,7 @@ Run this followed commands:
 pip install -r requirements.txt
 
 uvicorn resnet:app --reload
+# Run the local server at localhost:8000
 ```
 
 ## 🌱 Third Party Libraries

@@ -3,6 +3,10 @@ import Product from "@/components/product";
 import VisualSearch from "@/components/visual-search";
 import MainLayout from "@/layouts/main";
 import { useRouter } from "next/router";
+import axios from "axios";
+import { useState } from "react";
+import { LoadingProducts } from "@/components/skeleton";
+import { api } from "@/utils/api";
 
 const dots = [
   // {
@@ -52,6 +56,32 @@ interface SearchPageContentProps {
 }
 
 function SearchPageContent({ src, height, width }: SearchPageContentProps) {
+  const [isLoading, setIsLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+
+  // const { data: products, isLoading } = api.product.getAll.useQuery();
+
+  const getRelatedImages = async (url: string) => {
+    setIsLoading(true);
+    const blob = await (await fetch(url)).blob();
+    const formData = new FormData();
+    formData.append("image", blob);
+    console.log(blob);
+    axios
+      .post("upload_file", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        // setProducts
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
   return (
     <MainLayout>
       <div className="py-12">
@@ -63,6 +93,7 @@ function SearchPageContent({ src, height, width }: SearchPageContentProps) {
               height: Number(height),
               width: Number(width),
             }}
+            handleSearch={getRelatedImages}
             dots={dots}
           />
           <div
@@ -76,11 +107,24 @@ function SearchPageContent({ src, height, width }: SearchPageContentProps) {
               <h2 className="text-2xl font-bold tracking-tight text-gray-900">
                 Search results
               </h2>
-              {/* <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-                {products.map((product) => (
-                  <Product key={product.id} {...product} />
-                ))}
-              </div> */}
+              {isLoading ? (
+                "Loading..."
+              ) : (
+                <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+                  {products.slice(0, 9).map((product) => (
+                    <Product
+                      key={product.id}
+                      actualPrice={product.actualPrice}
+                      discountedPrice={product.discountedPrice}
+                      href="/"
+                      id={product.id}
+                      imageSrc={`/products/${product.id}.jpg`}
+                      brand={product.brand}
+                      name={product.name}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

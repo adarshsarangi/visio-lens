@@ -11,7 +11,6 @@ interface ProductProps {
   imageSrc: string;
   actualPrice: number;
   discountedPrice: number;
-  discountPercent: string;
   brand: string;
 }
 
@@ -31,7 +30,7 @@ export default function Product(product: ProductProps) {
             {product.brand}
           </p>
           <h3 className="text-sm text-gray-700">
-            <Link href={`products/${product.id}`}>
+            <Link href={`/products/${product.id}`}>
               <span aria-hidden="true" className="absolute inset-0" />
               {product.name}
             </Link>
@@ -45,7 +44,10 @@ export default function Product(product: ProductProps) {
             </span>
             <span className="text-xs font-semibold text-green-700">
               {" "}
-              {product.discountPercent} off
+              {Math.floor(
+                100 - (product.discountedPrice * 100) / product.actualPrice,
+              )}
+              % off
             </span>
           </div>
         </div>

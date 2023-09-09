@@ -57,7 +57,6 @@ export function InfiniteProductList({
                 imageSrc={`/products/${product.id}.jpg`}
                 brand={product.brand}
                 name={product.name}
-                discountPercent="20"
               />
             );
           })}

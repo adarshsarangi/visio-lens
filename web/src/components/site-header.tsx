@@ -20,16 +20,13 @@ import { useState } from "react";
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-blue-600/95 backdrop-blur">
+    <header className="sticky top-0 z-50 w-full border-b bg-emerald-600/95 backdrop-blur">
       <div className="container flex h-14 items-center">
         <MobileNav />
         <div className="flex flex-1 items-center justify-between space-x-5 md:justify-end">
           <Link href="/">
-            <img
-              src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/flipkart-plus_8d85f4.png"
-              alt="Flipkart"
-              className="h-6"
-            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/shopwiz.svg" alt="shopwiz" className="h-6" />
           </Link>
           <Dialog open={open} onOpenChange={setOpen}>
             <div className="flex w-full flex-1 items-center">

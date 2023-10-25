@@ -3,7 +3,7 @@
     <img alt="visio-lens" height="80" src="https://raw.githubusercontent.com/iamsahebgiri/add-readme/main/static/add-readme.png">
   </a>
 </p>
-<h1 align="center">Visio Lens</h1>
+<h1 align="center">visio Lens</h1>
 
 <div align="center">
 Where Shopping Meets Precision
